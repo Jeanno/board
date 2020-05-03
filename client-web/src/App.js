@@ -1,16 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import config from './config';
 
-class PostList extends React.Component {
-  render() {
-    return (
-      <div>
-        <div>A quick brown fox jumps over a lazy dog.</div>
-      </div>
-    );
-  }
-}
+import PostList from './components/PostList'
 
 class NewPostForm extends React.Component {
   constructor(props) {
@@ -23,13 +16,27 @@ class NewPostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+
   handleChange(event) {
     this.setState({newPost: event.target.value});
   }
 
   handleSubmit(event) {
-    alert(this.state.newPost);
-    // TODO: Handle submit new post
+    // Handle submit new post
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: this.state.newPost 
+      })
+    };
+    fetch(config.apiHost + "/posts/", req)
+      .then(res => {
+        this.setState({newPost: ''});
+        this.props.callback();
+      });
     event.preventDefault();
   }
 
@@ -50,14 +57,29 @@ class NewPostForm extends React.Component {
   }
 }
 
-function App() {
-  return (
-    <div>
-      <h1>Board</h1>
-      <PostList />
-      <NewPostForm />
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refresh: 0
+    };
+    this.onSubmitPost = this.onSubmitPost.bind(this);
+  }
+
+  onSubmitPost() {
+    this.setState({refresh: this.state.refresh + 1});
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Board</h1>
+        <PostList refresh={this.state.refresh} />
+        <NewPostForm callback={this.onSubmitPost} />
+      </div>
+    );
+  }
 }
 
 export default App;
