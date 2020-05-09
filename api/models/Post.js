@@ -4,9 +4,10 @@ const { db } = require('../db.js');
 class Post extends Model {}
 
 Post.init({
-  content: DataTypes.STRING
-}, { sequelize: db, modelName: 'post' });
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  }
+}, { sequelize: db, modelName: 'Post' });
 
-db.sync();
-
-exports.Post = Post;
+module.exports = Post;

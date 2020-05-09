@@ -1,4 +1,3 @@
-const { Post } = require('./models/Post.js');
 const express = require("express");
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -14,24 +13,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-
-app.get("/posts", (req, res, next) => {
-  Post.findAll().then(posts => {
-    res.json(posts);
-  });
-});
-
-app.post("/posts", (req, res, next) => {
-  console.log("Create Post");
-  console.log(req.body);
-  console.log();
-  Post.create({
-    content: req.body.content
-  })
-  .then(post => {
-    res.sendStatus(200);
-  });
-});
+require('./routes')(app);
 
 app.listen(3000, () => {
  console.log("Server running on port 3000");
