@@ -1,5 +1,4 @@
-const Post = require('../models/Post.js');
-const Tag = require('../models/Tag.js');
+const { Post, Tag } = require('../models/');
 
 const router = require('express').Router();
 
