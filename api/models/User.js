@@ -1,24 +1,24 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const { db } = require('../db.js');
+'use strict';
 
-class User extends Model {}
+const { v4: uuidv4 } = require('uuid');
 
-User.init({
-  nickname: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  uid: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  secret: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  }
-}, { sequelize: db, modelName: 'User' });
-
-module.exports = User;
-
-
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    nickname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    uid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+  }, {});
+  User.beforeCreate(async (user, options) => {
+    user.uid = uuidv4();
+  });
+  User.associate = function(models) {
+    // associations can be defined here
+  };
+  return User;
+};
