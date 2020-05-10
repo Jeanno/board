@@ -14,11 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
     },
   }, {});
+
   User.beforeCreate(async (user, options) => {
+    console.log("user create");
     user.uid = uuidv4();
   });
+
   User.associate = function(models) {
-    // associations can be defined here
+    User.AccessTokens = User.hasMany(models.AccessToken);
   };
   return User;
 };

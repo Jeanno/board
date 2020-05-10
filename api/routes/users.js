@@ -1,10 +1,10 @@
-const { User } = require('../models');
+const { User, AccessToken } = require('../models');
 
 const router = require('express').Router();
 
 router.get("/", (req, res, next) => {
-  Post.findAll().then(posts => {
-    res.json(posts);
+  User.findAll().then(users => {
+    res.json(users);
   });
 });
 
@@ -24,10 +24,17 @@ router.post("/", (req, res, next) => {
 
   User.create({
     nickname: req.body.nickname,
-    uid: ""
+    uid: "",
+    AccessTokens: [{
+      secret: ""
+    }]
+  }, {
+    include: [ AccessToken ]
   })
-  .then(post => {
-    res.sendStatus(200);
+  .then(user => {
+    let ret = user.toJSON();
+    res.status(200);
+    res.json(ret);
   });
 });
 
