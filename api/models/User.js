@@ -16,12 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   User.beforeCreate(async (user, options) => {
-    console.log("user create");
     user.uid = uuidv4();
   });
 
   User.associate = function(models) {
-    User.AccessTokens = User.hasMany(models.AccessToken);
+    User.AccessTokens = User.hasMany(models.AccessToken, {
+      as: "accessTokens"
+    });
   };
   return User;
 };

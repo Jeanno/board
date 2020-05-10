@@ -25,14 +25,24 @@ router.post("/", (req, res, next) => {
   User.create({
     nickname: req.body.nickname,
     uid: "",
-    AccessTokens: [{
+    accessTokens: [{
       secret: ""
     }]
   }, {
-    include: [ AccessToken ]
+    include: [{
+      association: User.AccessTokens,
+    }]
   })
   .then(user => {
     let ret = user.toJSON();
+    delete ret.id;
+
+    ret.accessTokens.forEach(token => {
+      delete token.id;
+      delete token.UserId;
+      delete token.updatedAt;
+      delete token.createdAt;
+    });
     res.status(200);
     res.json(ret);
   });

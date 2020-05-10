@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     token.secret = generateSecret(64);
   });
   AccessToken.associate = function(models) {
-    AccessToken.User = AccessToken.belongsTo(models.User);
+    AccessToken.User = AccessToken.belongsTo(models.User, {
+      as: "user"
+    });
   };
   return AccessToken;
 };
