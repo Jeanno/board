@@ -1,9 +1,11 @@
 'use strict';
 
 const { v4: uuidv4 } = require('uuid');
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  class User extends Model {}
+  User.init({
     nickname: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,7 +15,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-  }, {});
+  }, {
+    defaultScope: {
+      attributes: {
+        exclude: ['id', 'updatedAt']
+      }
+    },
+    sequelize,
+    modelName: 'User'
+  
+  });
 
   User.beforeCreate(async (user, options) => {
     user.uid = uuidv4();
