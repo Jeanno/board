@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     defaultScope: {
       limit: 10,
-      order: [['id', 'DESC']]
+      order: [['id', 'DESC']],
+      include: 'author'
     },
     sequelize,
     modelName: 'Post'
   });
   Post.associate = function(models) {
-    // associations can be defined here
+    Post.User = Post.belongsTo(models.User, {
+      as: "author"
+    });
   };
   return Post;
 };
