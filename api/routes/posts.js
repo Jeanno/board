@@ -22,11 +22,17 @@ router.post("/", (req, res, next) => {
     return;
   }
 
+  let userId = null;
+  if (req.user) {
+    userId = req.user.id;
+  }
   Post.create({
-    content: req.body.content
+    content: req.body.content,
+    authorId: userId
   })
   .then(post => {
-    res.sendStatus(200);
+    res.status(200);
+    res.json(post);
   });
 });
 
