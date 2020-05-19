@@ -11,6 +11,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(require('./auth.js'));
 
 require('./routes')(app);
 
