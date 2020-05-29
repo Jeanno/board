@@ -1,10 +1,13 @@
 # Backlog
 
 ## API
-Post author
-Token Authorization
+Login with Google Account
 
 
 ## UI
 Register user
 
+
+## Production
+- Setup database
+- Setup other configs
