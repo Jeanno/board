@@ -2,9 +2,11 @@
   "name": "board-api",
   "version": "1.0.0",
   "description": "Board API",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "gcloud builds submit --tag gcr.io/board-37561/board-api",
+    "deploy": "gcloud run deploy --image gcr.io/board-37561/board-api"
   },
   "author": "jeanno",
   "dependencies": {
