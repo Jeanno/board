@@ -1,6 +1,10 @@
 import React from 'react';
 import config from '../config';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 class PostList extends React.Component {
   constructor(props) {
     super(props);
@@ -45,12 +49,11 @@ class PostList extends React.Component {
   render() {
     const { items, isLoaded, error } = this.state;
     return (
-      <div>
-        <div>{this.props.refresh}</div>
+      <Container fluid>
         {items.map((item, i) => (
-          <div key={i}>{item.content}</div>
+          <Row key={i}><Col>{item.content}</Col></Row>
         ))}
-      </div>
+      </Container>
     );
   }
 }

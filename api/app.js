@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3001',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200
 };
 
