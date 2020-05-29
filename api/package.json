@@ -10,6 +10,9 @@
   },
   "author": "jeanno",
   "dependencies": {
-    "express": "^4.16.4"
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "sequelize": "^5.21.11",
+    "sqlite3": "^4.2.0"
   }
 }
