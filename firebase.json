@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "client-web/build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "api",
+      "*.md"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "board-api",
+          "region": "us-east1"
+        }
+      }
+    ]
+  }
+}
