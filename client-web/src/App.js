@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import config from './config';
 
-import PostList from './components/PostList'
+import Navbar from 'react-bootstrap/Navbar';
+import PostList from './components/PostList';
 
 class NewPostForm extends React.Component {
   constructor(props) {
@@ -74,6 +75,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Navbar bg="dark">
+          <Navbar.Brand href="#home">Board</Navbar.Brand>
+        </Navbar>
         <h1>Board</h1>
         <PostList refresh={this.state.refresh} />
         <NewPostForm callback={this.onSubmitPost} />
