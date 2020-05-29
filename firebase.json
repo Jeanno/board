@@ -10,7 +10,7 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/api",
         "run": {
           "serviceId": "board-api",
           "region": "us-east1"
