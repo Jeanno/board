@@ -51,7 +51,12 @@ class PostList extends React.Component {
     return (
       <Container fluid>
         {items.map((item, i) => (
-          <Row key={i}><Col>{item.content}</Col></Row>
+          <Row className="post" key={i}><Col>
+            <div className="post">
+              <div className="content">{item.content}</div>
+              <div className="author">{item.author ? item.author.nickname : 'Annoymous'}</div>
+            </div>
+          </Col></Row>
         ))}
       </Container>
     );
