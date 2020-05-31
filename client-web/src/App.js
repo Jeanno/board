@@ -49,6 +49,7 @@ class App extends React.Component {
             <Navbar.Brand href="#home">Board</Navbar.Brand>
           </Navbar>
           <PostList refresh={this.state.refresh} />
+          <hr />
           <NewPostForm callback={this.onSubmitPost} />
         </UserContext.Provider>
       </div>
