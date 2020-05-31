@@ -16,7 +16,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       refresh: 0,
-      userContext: null,
+      user: null,
+      token: null,
+      userIsLoaded: false
     };
     this.onSubmitPost = this.onSubmitPost.bind(this);
 
@@ -30,10 +32,8 @@ class App extends React.Component {
     const store = window.localStorage;
     const user = store.getItem('user');
     this.setState({
-      userContext: {
-        user: user,
-        isLoaded: true
-      }
+      user: user,
+      userIsLoaded: true
     });
   }
 
@@ -44,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <UserContext.Provider>
+        <UserContext.Provider value={this.state}>
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand href="#home">Board</Navbar.Brand>
           </Navbar>

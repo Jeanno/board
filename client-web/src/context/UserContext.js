@@ -1,7 +1,8 @@
 import { createContext } from 'react';
 
 export const UserContext = createContext({
-  isLoaded: false,
+  userIsLoaded: false,
   user: null,
+  token: null
 });
 
