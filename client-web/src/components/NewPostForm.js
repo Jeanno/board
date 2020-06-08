@@ -74,6 +74,7 @@ class NewPostForm extends React.Component {
             {nicknameInput}
             <Form.Group controlId="formContent">
               <Form.Control type="textarea"
+                  autoComplete="off"
                   name="newPost"
                   onChange={this.handleChange}
                   placeholder="Write your new post"

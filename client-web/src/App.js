@@ -5,9 +5,9 @@ import config from './config';
 
 import { UserContext } from './context/UserContext';
 
-import Navbar from 'react-bootstrap/Navbar';
 import PostList from './components/PostList';
 import NewPostForm from './components/NewPostForm';
+import TopBar from './components/TopBar';
 
 
 
@@ -70,9 +70,7 @@ class App extends React.Component {
     return (
       <div>
         <UserContext.Provider value={this.state}>
-          <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Board</Navbar.Brand>
-          </Navbar>
+          <TopBar />
           <PostList refresh={this.state.refresh} />
           <hr />
           <NewPostForm callback={this.onSubmitPost} />
