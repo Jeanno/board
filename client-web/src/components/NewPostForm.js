@@ -13,7 +13,8 @@ class NewPostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newPost: ""
+      newPost: "",
+      nickname: "Guest"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,15 +23,23 @@ class NewPostForm extends React.Component {
 
 
   handleChange(event) {
-    this.setState({newPost: event.target.value});
+    const { value, name } = event.target;
+    this.setState({ [name] : value })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+    event.preventDefault();
+    let user = this.context.user;
+    if (!user) {
+      // Register user with nickname
+      await this.context.register(this.state.nickname);
+    }
     // Handle submit new post
     const req = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.context.token.secret
       },
       body: JSON.stringify({
         content: this.state.newPost 
@@ -41,7 +50,6 @@ class NewPostForm extends React.Component {
         this.setState({newPost: ''});
         this.props.callback();
       });
-    event.preventDefault();
   }
 
   render() {
@@ -51,10 +59,10 @@ class NewPostForm extends React.Component {
         <Form.Row>
           <Form.Group as={Col} lg={4} controlId="formContent">
             <Form.Label>Nickname</Form.Label>
-            <Form.Control type="textarea" rows="5"
-                name="post"
+            <Form.Control type="text"
+                name="nickname"
                 onChange={this.handleChange}
-                value={this.state.newPost} />
+                value={this.state.nickname} />
           </Form.Group>
         </Form.Row>
       );
@@ -65,8 +73,8 @@ class NewPostForm extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             {nicknameInput}
             <Form.Group controlId="formContent">
-              <Form.Control type="textarea" rows="5"
-                  name="post"
+              <Form.Control type="textarea"
+                  name="newPost"
                   onChange={this.handleChange}
                   placeholder="Write your new post"
                   value={this.state.newPost} />
