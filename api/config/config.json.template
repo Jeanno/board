@@ -12,11 +12,10 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": null,
+    "username": "admin",
+    "password": "PASSWORD",
     "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "host": "HOST_IP",
+    "dialect": "mariadb"
   }
 }
