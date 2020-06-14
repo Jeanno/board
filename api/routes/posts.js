@@ -13,12 +13,12 @@ router.post("/", (req, res, next) => {
   console.log(req.body);
   console.log();
   
-  if (!req.body.content) {
+  if (!req.body.content.trim()) {
+    res.status(400);
     res.json({
       status: "error",
       msg: "Post content cannot be empty."
     });
-    res.sendStatus(400);
     return;
   }
 
