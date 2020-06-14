@@ -11,7 +11,7 @@
     ]
   }, {
     "target": "api",
-    "public": "client-web/build",
+    "public": "api/dummy",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -19,9 +19,18 @@
       "api",
       "*.md"
     ],
+    "headers": [
+      {
+        "source": "*",
+        "headers": [{
+          "key": "Cache-Control",
+          "value": "no-cache, no-store"
+        }]
+      }
+    ],
     "rewrites": [
       {
-        "source": "/*",
+        "source": "**",
         "run": {
           "serviceId": "board-api",
           "region": "us-east1"
