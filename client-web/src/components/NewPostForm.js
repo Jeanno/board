@@ -68,7 +68,7 @@ class NewPostForm extends React.Component {
     }
     return (
       <Container fluid>
-        <Row><Col lg={6}>
+        <Row style={{paddingTop: "10px"}}><Col lg={6}>
           <Form onSubmit={this.handleSubmit}>
             {nicknameInput}
             <Form.Group controlId="formContent">

@@ -7,6 +7,7 @@ import { UserContext } from './context/UserContext';
 import PostList from './components/PostList';
 import NewPostForm from './components/NewPostForm';
 import TopBar from './components/TopBar';
+import DevFooter from './components/DevFooter';
 
 
 
@@ -70,10 +71,10 @@ class App extends React.Component {
       <div>
         <UserContext.Provider value={this.state}>
           <TopBar />
-          <PostList refresh={this.state.refresh} />
-          <hr />
           <NewPostForm callback={this.onSubmitPost} />
-          <div style={{color: "#999"}}>API_HOST: {process.env.REACT_APP_API_HOST}</div>
+          <hr />
+          <PostList refresh={this.state.refresh} />
+          <DevFooter />
         </UserContext.Provider>
       </div>
     );
