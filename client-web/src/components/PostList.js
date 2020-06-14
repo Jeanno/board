@@ -45,15 +45,38 @@ class PostList extends React.Component {
       );
   }
 
+  formatDateTime(datetime) {
+    const unixTime = Date.parse(datetime);
+    const secondsAgo = (Date.now() - unixTime) / 1000;
+    if (secondsAgo < 60) {
+      return "Just now";
+    } else if (secondsAgo < 3600) {
+      const minsAgo = Math.floor(secondsAgo / 60);
+      return minsAgo + " minutes ago";
+    } else if (secondsAgo < 86400) {
+      const hoursAgo = Math.floor(secondsAgo / 3600);
+      return hoursAgo + " hours ago";
+    }
+    const options = {
+      month: 'short', day: 'numeric', year: 'numeric',
+      hour: 'numeric', minute: 'numeric'
+    };
+    return new Intl.DateTimeFormat('default', options).format(new Date(unixTime));
+  }
+
   render() {
     const { items, isLoaded, error } = this.state;
+    const formatDateTime = this.formatDateTime;
     return (
       <Container fluid>
         {items.map((item, i) => (
           <Row className="post" key={item.id}><Col>
             <div className="post">
               <div className="content">{item.content}</div>
-              <div className="author">{item.author ? item.author.nickname : 'Annoymous'}</div>
+              <div>
+                <span className="author">{item.author ? item.author.nickname : 'Annoymous'}</span>&nbsp;
+                <span className="postDateTime">{formatDateTime(item.createdAt)}</span>
+              </div>
             </div>
           </Col></Row>
         ))}

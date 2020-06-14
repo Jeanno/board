@@ -17,5 +17,10 @@ code {
 }
 
 .author {
-  font-size: 80%;
+  font-size: 85%;
+}
+
+.postDateTime{
+  font-size: 70%;
+  color: #555;
 }
