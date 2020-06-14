@@ -1,5 +1,4 @@
 import React from 'react';
-import config from '../config';
 import { UserContext } from '../context/UserContext';
 
 import Container from 'react-bootstrap/Container';
@@ -45,7 +44,7 @@ class NewPostForm extends React.Component {
         content: this.state.newPost 
       })
     };
-    fetch(config.apiHost + "/posts/", req)
+    fetch(process.env.REACT_APP_API_HOST + "/posts/", req)
       .then(res => {
         this.setState({newPost: ''});
         this.props.callback();

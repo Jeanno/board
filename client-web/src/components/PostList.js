@@ -1,5 +1,4 @@
 import React from 'react';
-import config from '../config';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -27,7 +26,7 @@ class PostList extends React.Component {
   }
 
   refreshPosts() {
-    const api = config.apiHost + "/posts"
+    const api = process.env.REACT_APP_API_HOST + "/posts"
     fetch(api)
       .then(res => res.json())
       .then(

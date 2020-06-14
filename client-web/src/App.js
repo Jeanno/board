@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import config from './config';
 
 import { UserContext } from './context/UserContext';
 
@@ -51,7 +50,7 @@ class App extends React.Component {
         nickname: nickname
       })
     };
-    const res = await fetch(config.apiHost + "/users/", req);
+    const res = await fetch(process.env.REACT_APP_API_HOST + "/users/", req);
     const json = await res.json();
     this.setState({
       user: json,
@@ -74,6 +73,7 @@ class App extends React.Component {
           <PostList refresh={this.state.refresh} />
           <hr />
           <NewPostForm callback={this.onSubmitPost} />
+          <div style={{color: "#999"}}>API_HOST: {process.env.REACT_APP_API_HOST}</div>
         </UserContext.Provider>
       </div>
     );
