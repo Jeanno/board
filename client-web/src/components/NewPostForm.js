@@ -53,6 +53,7 @@ class NewPostForm extends React.Component {
 
   render() {
     let nicknameInput = null;
+    const submitDisabled = !this.state.newPost.trim();
     if (!this.context.user) {
       nicknameInput = (
         <Form.Row>
@@ -79,7 +80,7 @@ class NewPostForm extends React.Component {
                   placeholder="Write your new post"
                   value={this.state.newPost} />
             </Form.Group>
-            <Button type="submit">Post</Button>
+            <Button type="submit" disabled={submitDisabled}>Post</Button>
           </Form>
         </Col></Row>
       </Container>
