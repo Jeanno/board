@@ -15,7 +15,7 @@ class TopBar extends React.Component {
     const nickname = user ? user.nickname : "guest";
     const loginTitle = `Welcome, ${nickname}!`;
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Board</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
