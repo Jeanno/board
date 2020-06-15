@@ -28,6 +28,9 @@ class NewPostForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
+    if (!this.state.newPost.trim()) {
+      return;
+    }
     let user = this.context.user;
     if (!user) {
       // Register user with nickname
