@@ -16,6 +16,10 @@ code {
   padding-bottom: 5px;
 }
 
+.post .content {
+  font-size: 120%;
+}
+
 .author {
   font-size: 85%;
 }
