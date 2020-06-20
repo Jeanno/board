@@ -1,6 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
 
 import { UserContext } from './context/UserContext';
 
@@ -8,6 +14,7 @@ import PostList from './components/PostList';
 import NewPostForm from './components/NewPostForm';
 import TopBar from './components/TopBar';
 import DevFooter from './components/DevFooter';
+import Posts from './components/Posts';
 
 
 
@@ -70,11 +77,20 @@ class App extends React.Component {
     return (
       <div>
         <UserContext.Provider value={this.state}>
-          <TopBar />
-          <NewPostForm callback={this.onSubmitPost} />
-          <hr />
-          <PostList refresh={this.state.refresh} />
-          <DevFooter />
+          <Router>
+            <TopBar />
+            <Switch>
+              <Route path="/posts">
+                <Posts />
+              </Route>
+              <Route path="/">
+                <NewPostForm callback={this.onSubmitPost} />
+                <hr />
+                <PostList refresh={this.state.refresh} />
+                <DevFooter />
+              </Route>
+            </Switch>
+          </Router>
         </UserContext.Provider>
       </div>
     );
