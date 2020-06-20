@@ -8,6 +8,17 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.get("/:postId", (req, res, next) => {
+  const postId = req.params['postId'];
+  Post.findOne({
+    where: {
+      id: postId
+    }
+  }).then(post => {
+    res.json(post);
+  });
+});
+
 router.post("/", (req, res, next) => {
   console.log("Create Post");
   console.log(req.body);
