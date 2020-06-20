@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     defaultScope: {
-      limit: 10,
       order: [['id', 'DESC']],
       include: 'author'
     },

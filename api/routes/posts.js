@@ -3,7 +3,12 @@ const { Post, Tag } = require('../models/');
 const router = require('express').Router();
 
 router.get("/", (req, res, next) => {
-  Post.findAll().then(posts => {
+  const page = req.query.page ? parseInt(req.query.page) : 0;
+  const pageSize = 20;
+  Post.findAll({
+    offset: page * pageSize,
+    limit: pageSize
+  }).then(posts => {
     res.json(posts);
   });
 });
