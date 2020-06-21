@@ -6,6 +6,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 
+import { Link } from 'react-router-dom';
+
 
 class TopBar extends React.Component {
   static contextType = UserContext;
@@ -16,12 +18,14 @@ class TopBar extends React.Component {
     const loginTitle = `Welcome, ${nickname}!`;
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Board</Navbar.Brand>
+        <Link to='/'><Navbar.Brand>Board</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
+          {/*
             <Nav.Link href="#featured">Featured</Nav.Link>
             <Nav.Link href="#topics">Topics</Nav.Link>
+          */}
           </Nav>
           <Nav>
             <NavDropdown title={loginTitle} id="collasible-nav-dropdown">

@@ -57,12 +57,10 @@ class Post extends React.Component {
       <Container fluid>
         <Row className="post"><Col>
           <div className="post">
-            <div className="post">
-              <div className="content">{item.content}</div>
-              <div>
-                <span className="author">{item.author ? item.author.nickname : 'Annoymous'}</span>&nbsp;
-                <span className="postDateTime">{formatDateTime(item.createdAt)}</span>
-              </div>
+            <div className="content">{item.content}</div>
+            <div>
+              <span className="author">{item.author ? item.author.nickname : 'Annoymous'}</span>&nbsp;
+              <span className="postDateTime">{formatDateTime(item.createdAt)}</span>
             </div>
           </div>
         </Col></Row>

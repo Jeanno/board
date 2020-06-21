@@ -20,6 +20,10 @@ code {
   font-size: 120%;
 }
 
+.post .content a {
+  color: #111;
+}
+
 .author {
   font-size: 85%;
 }
@@ -27,4 +31,10 @@ code {
 .postDateTime{
   font-size: 70%;
   color: #555;
+}
+
+.postList .post .content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
